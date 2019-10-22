@@ -14,24 +14,20 @@ typedef long double ld;
 
 int main()
 {
-	int n, s;
-	int ans = 0;
-	vector<int> p;
+	bool c = true;
+	string s;
 
-	cin >> n;
-	rep(i,n)
-	{
-		cin >> s;
-		p.push_back(s);
-	}
+	cin >> s;
 
-	for(int i = 1; i < n - 1; i++)
+	rep(i,3)
 	{
-		if(p[i-1] < p[i] && p[i] < p[i+1])
+		if(s[i] == s[i+1])
 		{
-			ans++;
+			c = false;
 		}
 	}
-	cout << ans << endl;
+
+	if(c == false) cout << "Bad" << endl;
+	else cout << "Good" << endl;
 	return 0;
 }
