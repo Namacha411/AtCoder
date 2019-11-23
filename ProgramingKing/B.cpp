@@ -6,7 +6,15 @@ typedef long double ld;
 #define all(x) x.begin(),x.end()
 #define DEBUG
 
+#define MOD 998244353
+
 int main()
 {
+	int n;
+	cin >> n;
+	vector<int> d(n);
+	rep(i, n) cin >> d.at(i);
+
+	
 	return 0;
 }
