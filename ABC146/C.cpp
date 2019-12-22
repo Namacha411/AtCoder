@@ -8,6 +8,9 @@ typedef long double ld;
 
 int main()
 {
+	ll a, b, x;
+	cin >> a >> b >> x;
 
+	
 	return 0;
 }

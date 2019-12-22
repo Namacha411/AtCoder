@@ -6,8 +6,19 @@ typedef long double ld;
 #define all(x) x.begin(),x.end()
 #define DEBUG
 
+
 int main()
 {
+	int n;
+	string s;
+	cin >> n >> s;
 
+	rep(i,s.size())
+	{
+		int diff = s[i] - 'A';
+		if(diff + n >= 26) s[i] += (n - 26);
+		else s[i] += n;
+	}
+	cout << s << endl;
 	return 0;
 }
