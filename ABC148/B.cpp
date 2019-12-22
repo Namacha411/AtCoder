@@ -16,5 +16,19 @@ typedef vector<ll> vll;
 
 int main()
 {
+	int n;
+	cin >> n;
+	string s,t;
+	cin >> s >> t;
+
+	vector<char> ans(n*2);
+	rep(i,n)
+	{
+		ans[i*2] = static_cast<char>(s[i]);
+		ans[i*2+1] = static_cast<char>(t[i]);
+	}
+
+	rep(i,2*n)cout << ans[i];
+	cout << endl;
 	return 0;
 }

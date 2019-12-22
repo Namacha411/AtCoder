@@ -16,5 +16,10 @@ typedef vector<ll> vll;
 
 int main()
 {
+	int a, b;
+	cin >> a >> b;
+	int ans = 6;
+	ans -= (a+b);
+	cout << ans << endl;
 	return 0;
 }

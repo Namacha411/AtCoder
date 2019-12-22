@@ -16,5 +16,13 @@ typedef vector<ll> vll;
 
 int main()
 {
+	ll n;
+	cin >> n;
+
+	bool flg = true;
+	if(n % 2 == 1) flg = false;
+	n -= n%10;
+
+	
 	return 0;
 }

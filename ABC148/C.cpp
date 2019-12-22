@@ -16,5 +16,19 @@ typedef vector<ll> vll;
 
 int main()
 {
+	ll a, b;
+	cin >> a >> b;
+
+	ll x = a * b;
+	if(a < b) swap(a,b);
+	ll r = a % b;
+	while (r != 0)
+	{
+		a = b;
+		b = r;
+		r = a % b;
+	}
+
+	cout << x / b << endl;
 	return 0;
 }
