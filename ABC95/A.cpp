@@ -27,5 +27,6 @@ int main()
 
 	int ans = 700 + 100*cnt;
 	cout << ans << endl;
+
 	return 0;
 }
