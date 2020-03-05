@@ -18,7 +18,7 @@ int main()
 {
 	int a,b,x;
 	cin >> a >> b >> x;
-	if(a <= x || (a+b) >= x) cout << "YES" << endl;
+	if((a + b) >= x && x >= a) cout << "YES" << endl;
 	else cout << "NO" << endl;
 	return 0;
 }

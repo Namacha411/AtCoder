@@ -83,6 +83,7 @@ vector<Bom> boms;
 vector<Operation> operations;
 vector<map<Pii, int>> setup_times;
 
+//入力
 void read_problem()
 {
 	string _str;
@@ -144,6 +145,7 @@ void read_problem()
 	sort(all(orders), [](const Order &o1, const Order &o2) { return o1.r < o2.r; });
 }
 
+//出力
 void write_solution()
 {
 	for (Operation &ope : operations)
@@ -158,6 +160,7 @@ void write_solution()
 	}
 }
 
+//解く
 void solve()
 {
 	operations.resize(R);
