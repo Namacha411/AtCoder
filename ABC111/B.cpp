@@ -24,18 +24,22 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(0);
 	int n; cin >> n;
-	vi w(n);
-	rep(i, n) cin >> w[i];
 
-	ll dif = INFLL;
-	rep(t, n)
+	for(int i = n; i < 1000; i++)
 	{
-		ll s1 = 0;
-		rep(i, t) s1 += w[i];
-		ll s2 = 0;
-		for(int i = t; i < n; i++) s2 += w[i];
-		chmin(dif, abs(s1-s2));
+		vi num;
+		int nx = i;
+		while(nx != 0)
+		{
+			num.push_back(nx % 10);
+			nx /= 10;
+		}
+		reverse(all(num));
+		if(num[0] == num[1] && num[0] == num[2])
+		{
+			cout << i << endl;
+			return 0;
+		}
 	}
-	cout << dif << endl;
 	return 0;
 }

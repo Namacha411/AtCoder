@@ -23,19 +23,20 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 int main()
 {
 	ios::sync_with_stdio(false); cin.tie(0);
-	int n; cin >> n;
-	vi w(n);
-	rep(i, n) cin >> w[i];
+	int a, b, k;
+	cin >> a >> b >> k;
 
-	ll dif = INFLL;
-	rep(t, n)
+	int cnt = 0;
+	vi modTbl;
+	for(int i = 1; i < 10000; i++)
 	{
-		ll s1 = 0;
-		rep(i, t) s1 += w[i];
-		ll s2 = 0;
-		for(int i = t; i < n; i++) s2 += w[i];
-		chmin(dif, abs(s1-s2));
+		if(a % i == 0 && b % i == 0)
+		{
+			cnt++;
+			modTbl.push_back(i);
+		}
 	}
-	cout << dif << endl;
+	reverse(all(modTbl));
+	cout << modTbl[k-1] << endl;
 	return 0;
 }

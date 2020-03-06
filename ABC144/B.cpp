@@ -14,21 +14,12 @@ int main()
 	int n;
 	cin >> n;
 
-	vector<int> mul(81);
-	rep(i,10)rep(j,10)
-	{
-		mul.push_back(i*j);
-	}
+	vector<int> mul;
+	rep(i,10)rep(j,10) mul.push_back(i*j);
 	sort(all(mul));
-	bool ans = binary_search(mul.begin(),mul.end(), n);
+	bool ans
+		= binary_search(all(mul), n);
 
-	if(ans)
-	{
-		cout << "Yes" << endl;
-	}
-	else
-	{
-		cout << "No" << endl;
-	}
+	cout << (ans ? "Yes" : "No") << endl;
 	return 0;
 }

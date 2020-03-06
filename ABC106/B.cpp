@@ -24,18 +24,17 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(0);
 	int n; cin >> n;
-	vi w(n);
-	rep(i, n) cin >> w[i];
-
-	ll dif = INFLL;
-	rep(t, n)
+	int cnt = 0;
+	for(int i = 1; i <= n; i++)
 	{
-		ll s1 = 0;
-		rep(i, t) s1 += w[i];
-		ll s2 = 0;
-		for(int i = t; i < n; i++) s2 += w[i];
-		chmin(dif, abs(s1-s2));
+		if(i % 2 == 0) continue;
+		int c = 0;
+		for(int j = 1; j <= i; j++)
+		{
+			if(i % j == 0) c++;
+		}
+		if(c == 8) cnt++;
 	}
-	cout << dif << endl;
+	cout << cnt << endl;
 	return 0;
 }
