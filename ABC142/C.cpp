@@ -27,15 +27,13 @@ int main()
 	//cout << fixed << setprecision(6);
 	int n;
 	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
+	vector<P> a(n);
+	rep(i, n) a[i].first = i + 1;
+	rep(i, n) cin >> a[i].second;
 
-	rep(i, n-1)
-	{
-		for(int j = i; j < n; j++)
-		{
-			
-		}
-	}
+	sort(all(a), [](P &a, P &b) { return a.second < b.second; });
+
+	rep(i, n) cout << a[i].first << ' ';
+	cout << endl;
 	return 0;
 }

@@ -27,15 +27,10 @@ int main()
 	//cout << fixed << setprecision(6);
 	int n;
 	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
+	vi l(n);
+	rep(i, n) cin >> l[i];
 
-	rep(i, n-1)
-	{
-		for(int j = i; j < n; j++)
-		{
-			
-		}
-	}
+	sort(all(l));
+	auto res = binary_search(all(l), 5);
 	return 0;
 }

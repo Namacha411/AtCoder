@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-using ll = long long;
+using ll = unsigned long long;
 using ld = long double;
 using vi = vector<int>;
 using vll = vector<ll>;
@@ -25,17 +25,8 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n;
-	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
-
-	rep(i, n-1)
-	{
-		for(int j = i; j < n; j++)
-		{
-			
-		}
-	}
+	int n; cin >> n;
+	vi v(n);
+	rep(i, n) cin >> v[i];
 	return 0;
 }

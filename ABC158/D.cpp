@@ -25,17 +25,31 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n;
-	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
+	string S;
+	cin >> S;
 
-	rep(i, n-1)
+	deque<char> s(all(S));
+
+	int q; cin >> q;
+	bool rev = false;
+	rep(cs, q)
 	{
-		for(int j = i; j < n; j++)
+		int t;
+		cin >> t;
+		if(t == 1) rev = ~rev;
+		if(t == 2)
 		{
-			
+			int f;
+			char c;
+			cin >> f >> c;
+			if(f == 1 ^ rev) s.emplace_front(c);
+			if(f == 2 ^ rev) s.emplace_back(c);
 		}
 	}
+	if(rev) reverse(all(s));
+
+	for(auto c : s)
+		cout << c;
+	cout << endl;
 	return 0;
 }

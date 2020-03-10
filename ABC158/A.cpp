@@ -25,17 +25,11 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n;
-	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
-
-	rep(i, n-1)
-	{
-		for(int j = i; j < n; j++)
-		{
-			
-		}
-	}
+	string s;
+	cin >> s;
+	if(s[0] == s[1] && s[0] == s[2])
+		cout << "No" << endl;
+	else
+		cout << "Yes" << endl;
 	return 0;
 }

@@ -25,17 +25,16 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n;
-	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
-
-	rep(i, n-1)
+	int a, b;
+	cin >> a >> b;
+	for(int i = 1; i <= 1009; i++)
 	{
-		for(int j = i; j < n; j++)
+		if((int)(i * 0.08) == a && (int)(i * 0.1) == b)
 		{
-			
+			cout << i << endl;
+			return 0;
 		}
 	}
+	cout << NIL << endl;
 	return 0;
 }

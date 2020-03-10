@@ -25,17 +25,29 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n;
-	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
+	int n, m;
+	cin >> n >> m;
+	vector<pair<int, string>> submit(m);
+	rep(i, m)
+		cin >> submit[i].first >> submit[i].second;
 
-	rep(i, n-1)
+	vector<pair<int, bool>> pena(n, make_pair(0, true));
+	int ac = 0;
+	rep(i, m)
 	{
-		for(int j = i; j < n; j++)
+		if(submit[i].second == "WA")
+			if(pena[submit[i].first - 1].second)
+				pena[submit[i].first - 1].first ++;
+		else
 		{
-			
+			pena[submit[i].first - 1].second = false;
+			ac++;
 		}
 	}
+
+	int ans = 0;
+	rep(i, n) ans += pena[i].first;
+
+	cout << ans << ' ' << ac << endl;
 	return 0;
 }

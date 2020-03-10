@@ -25,17 +25,19 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n;
-	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
+	int n; cin >> n;
+	vi b(n-1);
+	rep(i, n-1) cin >> b[i];
 
-	rep(i, n-1)
+
+	ll ans = 0;
+	rep(i, n-2)
 	{
-		for(int j = i; j < n; j++)
-		{
-			
-		}
+		ans += min(b[i], b[i+1]);
 	}
+	ans += b.front();
+	ans += b.back();
+
+	cout << ans << endl;
 	return 0;
 }

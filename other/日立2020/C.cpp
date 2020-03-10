@@ -11,7 +11,6 @@ const int INF = 1e9;
 const ll INFLL = 1e18;
 const int MOD = 1e9 + 7;
 const int NIL = -1;
-const ld PI = acos(-1);
 
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
@@ -21,21 +20,17 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 #define DEBUG
 
+struct tree
+{
+	int parent, child;
+};
+
 int main()
 {
-	ios::sync_with_stdio(false); cin.tie(nullptr);
-	//cout << fixed << setprecision(6);
+	ios::sync_with_stdio(false); cin.tie(0);
 	int n;
 	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
-
-	rep(i, n-1)
-	{
-		for(int j = i; j < n; j++)
-		{
-			
-		}
-	}
+	vector<tree> t(n);
+	rep(i, n) cin >> t[i].parent >> t[i].child;
 	return 0;
 }

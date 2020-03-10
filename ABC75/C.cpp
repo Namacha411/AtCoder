@@ -6,6 +6,7 @@ using ld = long double;
 using vi = vector<int>;
 using vll = vector<ll>;
 using P = pair<int, int>;
+using Graph = vector<vi>;
 
 const int INF = 1e9;
 const ll INFLL = 1e18;
@@ -21,21 +22,42 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 #define DEBUG
 
+vector<bool> seen;
+void dfs(int v, Graph &G, int &n)
+{
+	seen[v] = true;
+	rep(v2, n)
+	{
+		if(G[v][v2] == false) continue;
+		if(seen[v2] == true) continue;
+		dfs(v2, G, n);
+	}
+}
+
 int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n;
-	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
+	int n, m;
+	cin >> n >> m;
+	vector<vector<int>> G(n);
+	seen.resize(n, false);
 
-	rep(i, n-1)
+	rep(i, m)
 	{
-		for(int j = i; j < n; j++)
-		{
-			
-		}
+		int a, b;
+		cin >> a >> b;
+		G[a].push_back(b);
+		G[b].push_back(a);
 	}
+
+	int ans = 0;
+	rep(i, m)
+	{
+		if(G[i].size() == 1
+			|| G[i].size() == 2)
+			ans++;
+	}
+	cout << ans << endl;
 	return 0;
 }

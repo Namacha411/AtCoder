@@ -11,7 +11,6 @@ const int INF = 1e9;
 const ll INFLL = 1e18;
 const int MOD = 1e9 + 7;
 const int NIL = -1;
-const ld PI = acos(-1);
 
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
@@ -23,19 +22,15 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main()
 {
-	ios::sync_with_stdio(false); cin.tie(nullptr);
-	//cout << fixed << setprecision(6);
-	int n;
-	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
-
-	rep(i, n-1)
-	{
-		for(int j = i; j < n; j++)
-		{
-			
-		}
-	}
+	ios::sync_with_stdio(false); cin.tie(0);
+	string s;
+	cin >> s;
+	if(s[0] == 'h' && s[1] == 'i')
+		if(s[2] != 'i')
+			cout << "Yes" << endl;
+		else
+			cout << "No" << endl;
+	else
+		cout << "No" << endl;
 	return 0;
 }

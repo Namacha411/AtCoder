@@ -21,21 +21,33 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 #define DEBUG
 
+ll p(ll n)
+{
+	if(n == 1) return 0;
+	return (n - 1) + p(n - 1);
+}
+
 int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n;
-	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
+	int n; cin >> n;
+	vector<string> s(n);
+	rep(i, n) cin >> s[i];
 
-	rep(i, n-1)
+	unordered_map<string, ll> um;
+	rep(i, n)
 	{
-		for(int j = i; j < n; j++)
-		{
-			
-		}
+		sort(all(s[i]));
+		um[s[i]]++;
 	}
+	ll ans = 0;
+	for(auto a : um)
+	{
+		if(a.second == 1) continue;
+		ans += p(a.second);
+	}
+
+	cout << ans << endl;
 	return 0;
 }

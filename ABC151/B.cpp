@@ -25,17 +25,16 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n;
-	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
+	int n, k, m;
+	cin >> n >> k >> m;
+	vi a(n - 1);
+	rep(i, n - 1) cin >> a[i];
 
-	rep(i, n-1)
-	{
-		for(int j = i; j < n; j++)
-		{
-			
-		}
-	}
+	ll sum = 0;
+	rep(i, n - 1) sum += a[i];
+	ll ans = (n * m) - sum;
+
+	if(ans > k) cout << -1 << endl;
+	else cout << (ans < 0 ? 0 : ans) << endl;
 	return 0;
 }

@@ -25,17 +25,25 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n;
-	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
+	int n; cin >> n;
+	vi h(n);
+	rep(i, n) cin >> h[i];
 
+	int ans = 0;
+	int step = 0;
 	rep(i, n-1)
 	{
-		for(int j = i; j < n; j++)
+		//cerr << step << endl;
+		if(h[i+1] <= h[i])
+			step++;
+		else
 		{
-			
+			chmax(ans, step);
+			step = 0;
 		}
 	}
+	chmax(ans, step);
+
+	cout << ans << endl;
 	return 0;
 }

@@ -1,77 +1,52 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef unsigned long long ll;
-typedef long double ld;
-typedef vector<int> vi;
-typedef vector<ll> vll;
+using ll = long long;
+using ld = long double;
+using vi = vector<int>;
+using vll = vector<ll>;
+using P = pair<int, int>;
 
-#define y0 y3487465
-#define y1 y8687969
-#define j0 j1347829
-#define j1 j234892
-#define next asdnext
-#define prev asdprev
-
-#define INF (int)(1e9)
+const int INF = 1e9;
+const ll INFLL = 1e18;
+const int MOD = 1e9 + 7;
+const int NIL = -1;
 
 #define rep(i,n) for(int i=0; i<(n); ++i)
-#define REP(i,start,end) for(int i=(start);i<=(end);++i)
-#define all(n) begin(n),end(n)
+#define all(n) n.begin(),n.end()
+
+template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
+template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
 #define DEBUG
 
-int kaijou(int n)
+int fact(int n)
 {
-	if(n > 1)
-	{
-		return n * kaijou(n-1);
-	}
-	else
-	{
-		return 1;
-	}
+	if(n == 1) return 1;
+	return n * fact(n - 1);
 }
 
 int main()
 {
-	int n;
-	cin >> n;
-	vi p(n), q(n), per(n);
-	rep(i,n) cin >> p[i];
-	rep(i,n) cin >> q[i];
-	rep(i,n) per[i] = i+1;
+	ios::sync_with_stdio(false); cin.tie(0);
+	int n; cin >> n;
+	vi p(n), q(n);
+	rep(i, n) cin >> p[i] >> q[i];
 
-	int pn,qn;
-	rep(j,kaijou(n))
+	vi perm(n);
+	for(int i = 1; i <= n; i++) perm[i] = i;
+
+	int a = 0;
+	int b = 0;
+	for(int i = 0; i < fact(n); i++)
 	{
-		rep(i,n)
+		if(perm == p)
 		{
-			if(p[i] != per[i])
-			{
-				next_permutation(all(per));
-				break;
-			}
-			else if(i == n-1) pn = i;
+			a = i;
+			break;
 		}
+		next_permutation(all(perm));
 	}
-	rep(i,n) per[i] = i+1;
-	rep(j,kaijou(n))
-	{
-		rep(i,n)
-		{
-			if(q[i] != per[i])
-			{
-				next_permutation(all(per));
-				break;
-			}
-			else if(i == n-1) qn = i;
-		}
-	}
-
-	cout << pn << endl;
-	cout << qn << endl;
-	cout << abs(pn-qn) << endl;
-
+	cout << a << endl;
 	return 0;
 }

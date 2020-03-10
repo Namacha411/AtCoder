@@ -21,21 +21,25 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 #define DEBUG
 
+string n;
+int dfs(string s)
+{
+	if(stol(s) > stol(n)) return 0;
+	else
+	{
+		for(char c : "753")
+		{
+			return dfs(s + c) + 1;
+		}
+	}
+	return 0;
+}
+
 int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n;
 	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
-
-	rep(i, n-1)
-	{
-		for(int j = i; j < n; j++)
-		{
-			
-		}
-	}
+	cout << dfs("0") << endl;
 	return 0;
 }
