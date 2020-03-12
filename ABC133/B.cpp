@@ -4,6 +4,7 @@ using namespace std;
 using ll = long long;
 using ld = long double;
 using vi = vector<int>;
+using vi2 = vector<vector<int>>;
 using vll = vector<ll>;
 using P = pair<int, int>;
 
@@ -19,25 +20,34 @@ const ld PI = acos(-1);
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
+#define DEBUG
+
 int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n, x;
-	cin >> n >> x;
-	vi l(n);
-	rep(i, n) cin >> l[i];
+	int n, d;
+	cin >> n >> d;
+	vi2 x(n, vector<int>(d));
+	rep(i, n) rep(j, d) cin >> x[i][j];
 
-	int ans = 1;
-	vi d(n+1, 0);
-	for(int i = 1; i <= n; i++)
+	vi l;
+	rep(i, n)
 	{
-		d[i] = d[i-1] + l[i-1];
-		if(d[i] <= x) ans++;
+		for(int j = i+1; j < n; j++)
+		{
+			int dis = 0;
+			rep(k, d)
+				dis += pow((x[i][k] - x[j][k]), 2);
+			l.push_back(dis);
+		}
 	}
-
-	rep(i, d.size()) cerr << d[i] << ' ';
-	cerr << endl;
+	int ans = 0;
+	for(auto a : l)
+	{
+		rep(i, 4000)
+			if(i * i == a) ans++;
+	}
 
 	cout << ans << endl;
 	return 0;

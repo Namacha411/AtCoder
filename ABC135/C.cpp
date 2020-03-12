@@ -19,25 +19,32 @@ const ld PI = acos(-1);
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
+#define DEBUG
+
 int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n, x;
-	cin >> n >> x;
-	vi l(n);
-	rep(i, n) cin >> l[i];
+	int n; cin >> n;
+	vi a(n+1), b(n);
+	rep(i, n+1) cin >> a[i];
+	rep(i, n) cin >> b[i];
 
-	int ans = 1;
-	vi d(n+1, 0);
-	for(int i = 1; i <= n; i++)
+	ll ans = 0;
+	rep(i, n)
 	{
-		d[i] = d[i-1] + l[i-1];
-		if(d[i] <= x) ans++;
+		if(a[i] <= b[i])
+		{
+			ans += a[i];
+			a[i+1] -= min(a[i+1], b[i] - a[i]);
+		}
+		else ans += a[i];
 	}
 
-	rep(i, d.size()) cerr << d[i] << ' ';
-	cerr << endl;
+	#ifdef DEBUG
+	rep(i, n+1) cerr << a[i] << ' ';
+	cout << endl;
+	#endif
 
 	cout << ans << endl;
 	return 0;

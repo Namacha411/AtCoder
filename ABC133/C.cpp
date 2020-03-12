@@ -9,7 +9,7 @@ using P = pair<int, int>;
 
 const int INF = 1e9;
 const ll INFLL = 1e18;
-const int MOD = 1e9 + 7;
+const int MOD = 2019;
 const int NIL = -1;
 const ld PI = acos(-1);
 
@@ -19,25 +19,31 @@ const ld PI = acos(-1);
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
+#define DEBUG
+
+vi tbl;
+void solve(int &l, int &r)
+{
+	for(int i = l; i <= r; i++)
+	{
+		for(int j = i + 1; j <= r; j++)
+		{
+			tbl.push_back(i * j % MOD);
+		}
+	}
+	return;
+}
+
 int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n, x;
-	cin >> n >> x;
-	vi l(n);
-	rep(i, n) cin >> l[i];
+	int l, r;
+	cin >> l >> r;
 
-	int ans = 1;
-	vi d(n+1, 0);
-	for(int i = 1; i <= n; i++)
-	{
-		d[i] = d[i-1] + l[i-1];
-		if(d[i] <= x) ans++;
-	}
-
-	rep(i, d.size()) cerr << d[i] << ' ';
-	cerr << endl;
+	solve(l, r);
+	int ans = INF;
+	rep(i, tbl.size()) chmin(ans, tbl[i]);
 
 	cout << ans << endl;
 	return 0;
