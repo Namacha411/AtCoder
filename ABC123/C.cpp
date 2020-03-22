@@ -23,24 +23,13 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n; cin >> n;
-	vector<pair<string, int>> input(n);
-	rep(i, n)
-		cin >> input[i].first >> input[i].second;
+	ld n; cin >> n;
+	vector<ld> a(5);
+	rep(i, 5) cin >> a[i];
 
-	map<string, vector<int>> r;
-	rep(i, n)
-		r[input[i].first].push_back(input[i].second);
+	ld mini = INFLL;
+	rep(i, 5) chmin(mini, a[i]);
 
-	for(auto a : r)
-		sort(all(a.second), [](int &a, int &b){ return a < b; });
-
-	for(auto a : r)
-	{
-		cerr << a.first << '\t';
-		rep(i, a.second.size())
-			cerr << a.second[i] << ' ';
-		cerr << endl;
-	}
+	cout << (ll)ceil(n / mini) + 4 << endl;
 	return 0;
 }

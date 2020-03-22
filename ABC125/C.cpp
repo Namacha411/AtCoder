@@ -19,28 +19,35 @@ const ld PI = acos(-1);
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
+int gcd(int a, int b)
+{
+	if (a < b) return gcd(b, a);
+	int r;
+	while ((r = a % b)){ a = b; b = r; }
+	return b;
+}
+
+void find_max_gcd(queue<int> &q)
+{
+	while(q.size() != 1)
+	{
+		int q1 = q.front(); q.pop();
+		int q2 = q.front(); q.pop();
+		q.push(gcd(q1, q2));
+	}
+}
+
 int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
 	int n; cin >> n;
-	vector<pair<string, int>> input(n);
-	rep(i, n)
-		cin >> input[i].first >> input[i].second;
+	vi a(n);
+	rep(i, n) cin >> a[i];
 
-	map<string, vector<int>> r;
-	rep(i, n)
-		r[input[i].first].push_back(input[i].second);
+	queue<int> q;
+	rep(i, n) q.push(a[i]);
 
-	for(auto a : r)
-		sort(all(a.second), [](int &a, int &b){ return a < b; });
-
-	for(auto a : r)
-	{
-		cerr << a.first << '\t';
-		rep(i, a.second.size())
-			cerr << a.second[i] << ' ';
-		cerr << endl;
-	}
+	cout << q.front() << endl;
 	return 0;
 }

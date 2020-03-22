@@ -19,28 +19,27 @@ const ld PI = acos(-1);
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
+void dfs(string s, char mx, const int &n)
+{
+	if(s.size() == n)
+	{
+		cout << s << '\n';
+		return;
+	}
+	else
+	{
+		for(char c = 'a'; c <= mx; c++)
+		{
+			dfs(s + c, (c == mx ? (char)(mx + 1) : mx), n);
+		}
+	}
+}
+
 int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
 	int n; cin >> n;
-	vector<pair<string, int>> input(n);
-	rep(i, n)
-		cin >> input[i].first >> input[i].second;
-
-	map<string, vector<int>> r;
-	rep(i, n)
-		r[input[i].first].push_back(input[i].second);
-
-	for(auto a : r)
-		sort(all(a.second), [](int &a, int &b){ return a < b; });
-
-	for(auto a : r)
-	{
-		cerr << a.first << '\t';
-		rep(i, a.second.size())
-			cerr << a.second[i] << ' ';
-		cerr << endl;
-	}
+	dfs("", 'a', n);
 	return 0;
 }

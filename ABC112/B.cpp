@@ -11,7 +11,7 @@ const int INF = 1e9;
 const ll INFLL = 1e18;
 const int MOD = 1e9 + 7;
 const int NIL = -1;
-const ld PI = acos(-1);
+const ld PI = acosl(-1);
 
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
@@ -23,24 +23,23 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n; cin >> n;
-	vector<pair<string, int>> input(n);
+	int n, t;
+	cin >> n >> t;
+	vector<P> keiro(n);
 	rep(i, n)
-		cin >> input[i].first >> input[i].second;
+		cin >> keiro[i].first >> keiro[i].second;
 
-	map<string, vector<int>> r;
+	int min = INF;
+	int ans = NIL;
 	rep(i, n)
-		r[input[i].first].push_back(input[i].second);
-
-	for(auto a : r)
-		sort(all(a.second), [](int &a, int &b){ return a < b; });
-
-	for(auto a : r)
 	{
-		cerr << a.first << '\t';
-		rep(i, a.second.size())
-			cerr << a.second[i] << ' ';
-		cerr << endl;
+		if(keiro[i].second <= t)
+		{
+			if(chmin(min, keiro[i].first))
+				ans = keiro[i].first;
+		}
 	}
+
+	cout << (ans != NIL ? to_string(ans) : "TLE") << endl;
 	return 0;
 }

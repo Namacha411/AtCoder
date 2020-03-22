@@ -11,7 +11,7 @@ const int INF = 1e9;
 const ll INFLL = 1e18;
 const int MOD = 1e9 + 7;
 const int NIL = -1;
-const ld PI = acos(-1);
+const ld PI = acosl(-1);
 
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
@@ -23,24 +23,21 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n; cin >> n;
-	vector<pair<string, int>> input(n);
-	rep(i, n)
-		cin >> input[i].first >> input[i].second;
+	int n, k;
+	cin >> n >> k;
+	vll h(n);
+	rep(i, n) cin >> h[i];
 
-	map<string, vector<int>> r;
-	rep(i, n)
-		r[input[i].first].push_back(input[i].second);
-
-	for(auto a : r)
-		sort(all(a.second), [](int &a, int &b){ return a < b; });
-
-	for(auto a : r)
+	sort(all(h));
+	rep(i, n) cerr << h[i] << ' ';
+	cerr << endl;
+	ll ans = INFLL;
+	for(int i = 0; i <= n-k; i++)
 	{
-		cerr << a.first << '\t';
-		rep(i, a.second.size())
-			cerr << a.second[i] << ' ';
-		cerr << endl;
+		chmin(ans, h[i+k-1] - h[i]);
+		cerr << h[i+k-1] - h[i] << endl;
 	}
+
+	cout << ans << endl;
 	return 0;
 }

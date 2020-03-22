@@ -22,25 +22,19 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
-	//cout << fixed << setprecision(6);
-	int n; cin >> n;
-	vector<pair<string, int>> input(n);
-	rep(i, n)
-		cin >> input[i].first >> input[i].second;
+	cout << fixed << setprecision(9);
+	ld n, k;
+	cin >> n >> k;
 
-	map<string, vector<int>> r;
-	rep(i, n)
-		r[input[i].first].push_back(input[i].second);
-
-	for(auto a : r)
-		sort(all(a.second), [](int &a, int &b){ return a < b; });
-
-	for(auto a : r)
+	ld ans = 0;
+	for(int i = 1; i <= n; i++)
 	{
-		cerr << a.first << '\t';
-		rep(i, a.second.size())
-			cerr << a.second[i] << ' ';
-		cerr << endl;
+		ld tmp = 1 / n;
+		int now = i;
+		while(now < k){ now *= 2; tmp /= 2; }
+		ans += tmp;
 	}
+
+	cout << ans << endl;
 	return 0;
 }

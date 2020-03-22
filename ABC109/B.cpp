@@ -11,7 +11,7 @@ const int INF = 1e9;
 const ll INFLL = 1e18;
 const int MOD = 1e9 + 7;
 const int NIL = -1;
-const ld PI = acos(-1);
+const ld PI = acosl(-1);
 
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
@@ -24,23 +24,30 @@ int main()
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
 	int n; cin >> n;
-	vector<pair<string, int>> input(n);
+	vector<string> w(n);
+	rep(i, n) cin >> w[i];
+
+	map<string, int> s;
 	rep(i, n)
-		cin >> input[i].first >> input[i].second;
-
-	map<string, vector<int>> r;
-	rep(i, n)
-		r[input[i].first].push_back(input[i].second);
-
-	for(auto a : r)
-		sort(all(a.second), [](int &a, int &b){ return a < b; });
-
-	for(auto a : r)
 	{
-		cerr << a.first << '\t';
-		rep(i, a.second.size())
-			cerr << a.second[i] << ' ';
-		cerr << endl;
+		s[w[i]]++;
 	}
+	rep(i, n)
+	{
+		if(s[w[i]] > 1)
+		{
+			cout << "No" << endl;
+			return 0;
+		}
+	}
+	rep(i, n-1)
+	{
+		if(w[i][w[i].size()] == w[i+1][0])
+		{
+			cout << "No" << endl;
+			return 0;
+		}
+	}
+	cout << "Yes" << endl;
 	return 0;
 }
