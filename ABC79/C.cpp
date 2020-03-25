@@ -19,24 +19,23 @@ const ld PI = acosl(-1);
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
-int main(){
+int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int a, b;
-	cin >> a >> b;
+	string s;
+	cin >> s;
+	int a = s[0] - '0';
+	int b = s[1] - '0';
+	int c = s[2] - '0';
+	int d = s[3] - '0';
 
-	int ans = 0;
-	for(int i = a; i <= b; i++){
-		string s = to_string(i);
-		string srev = s;
-		reverse(srev.begin(), srev.end());
-		bool chk = true;
-		rep(i, s.size()){
-			if(s[i] != srev[i]) chk = false;
-		}
-		if(chk) ans++;
-	}
-
-	cout << ans << endl;
+	if(a+b+c+d == 7) printf("%d+%d+%d+%d=7\n",a,b,c,d);
+	else if(a+b+c-d == 7) printf("%d+%d+%d-%d=7\n",a,b,c,d);
+	else if(a+b-c+d == 7) printf("%d+%d-%d+%d=7\n",a,b,c,d);
+	else if(a+b-c-d == 7) printf("%d+%d-%d-%d=7\n",a,b,c,d);
+	else if(a-b+c+d == 7) printf("%d-%d+%d+%d=7\n",a,b,c,d);
+	else if(a-b+c-d == 7) printf("%d-%d+%d-%d=7\n",a,b,c,d);
+	else if(a-b-c+d == 7) printf("%d-%d-%d+%d=7\n",a,b,c,d);
+	else if(a-b-c-d == 7) printf("%d-%d-%d-%d=7\n",a,b,c,d);
 	return 0;
 }

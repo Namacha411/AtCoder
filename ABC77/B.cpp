@@ -19,24 +19,14 @@ const ld PI = acosl(-1);
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
-int main(){
+int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int a, b;
-	cin >> a >> b;
-
-	int ans = 0;
-	for(int i = a; i <= b; i++){
-		string s = to_string(i);
-		string srev = s;
-		reverse(srev.begin(), srev.end());
-		bool chk = true;
-		rep(i, s.size()){
-			if(s[i] != srev[i]) chk = false;
-		}
-		if(chk) ans++;
+	int n; cin >> n;
+	ll i;
+	for(i = 1; i <= 1e9; i++){
+		if(i * i > n) break;
 	}
-
-	cout << ans << endl;
+	cout << (i - 1) * (i - 1) << endl;
 	return 0;
 }

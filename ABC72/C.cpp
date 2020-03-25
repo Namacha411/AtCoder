@@ -19,22 +19,40 @@ const ld PI = acosl(-1);
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
-int main(){
+int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int a, b;
-	cin >> a >> b;
+	int n;
+	cin >> n;
+	vi a(n);
+	rep(i, n) cin >> a[i];
 
-	int ans = 0;
-	for(int i = a; i <= b; i++){
-		string s = to_string(i);
-		string srev = s;
-		reverse(srev.begin(), srev.end());
-		bool chk = true;
-		rep(i, s.size()){
-			if(s[i] != srev[i]) chk = false;
+	int max = NIL;
+	int min = INF;
+	vi m(1e5 + 1, 0);
+	for(int n : a){
+		chmax(max, n);
+		chmin(min, n);
+		m[n]++;
+	}
+	rep(i, m.size()){
+		if(m[i] != 0){
+			fprintf(
+				stderr,
+				"key = %d, val = %d\n",
+				i, m[i]
+			);
 		}
-		if(chk) ans++;
+	}
+	int ans = 0;
+	for(int x = (min == 0 ? 1 : min); x <= max; x++){
+		int t = 0;
+		t += m[x - 1];
+		t += m[x];
+		t += m[x + 1];
+		if(chmax(ans, t)){
+			fprintf(stderr, "x = %d, ans = %d\n", x, t);
+		}
 	}
 
 	cout << ans << endl;
