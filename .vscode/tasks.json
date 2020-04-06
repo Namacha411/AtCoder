@@ -3,10 +3,10 @@
 		{
 			"type": "shell",
 			"label": "g++ build active file",
-			"command": "/usr/local/Cellar/gcc/9.2.0_3/bin/g++",
+			"command": "/usr/local/Cellar/gcc/9.2.0_3/bin/g++-9",
 			"args": [
 				"-g",
-				"-std=gnu++17",
+				"-std=gnu++2a",
 				"-o",
 				"-O2",
 				"${file}",

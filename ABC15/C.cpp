@@ -19,42 +19,25 @@ const ld PI = acosl(-1);
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
-int fact(int n){
-	if(n == 0) return 1;
-	return n * fact(n - 1);
-}
-
-bool equal(const vi &a, const vi &b){
-	rep(i, a.size()){
-		if(a[i] != b[i]) return false;
+set<bool> s;
+bool dfs(const vector<vi> &t, int n, int depth){
+	if(depth == t.size()) return (n == 0);
+	rep(i, t[0].size()){
+		if(dfs(t, (t[depth][i] ^ n), depth+1)) return true;
 	}
-	return true;
+	return false;
 }
 
 int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n; cin >> n;
-	vi p(n), q(n);
-	rep(i, n) cin >> p[i];
-	rep(i, n) cin >> q[i];
+	int n, k;
+	cin >> n >> k;
+	vector<vi> t(n, vi(k));
+	rep(i, n) rep(j, k) cin >> t[i][j];
 
-	vi perm;
-	for(int i = 1; i <= n; i++){
-		perm.push_back(i);
-	}
-	int a;
-	for(a = 0; a < fact(n); a++){
-		if(equal(p, perm)) break;
-		next_permutation(all(perm));
-	}
-	sort(all(perm));
-	int b;
-	for(b = 0; b < fact(n); b++){
-		if(equal(q, perm)) break;
-		next_permutation(all(perm));
-	}
+	bool ans = dfs(t, 0, 0);
 
-	cout << abs(a - b) << endl;
+	cout << (ans ? "Found" : "Nothing") << endl;
 	return 0;
 }

@@ -19,42 +19,42 @@ const ld PI = acosl(-1);
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
-int fact(int n){
-	if(n == 0) return 1;
-	return n * fact(n - 1);
-}
-
-bool equal(const vi &a, const vi &b){
-	rep(i, a.size()){
-		if(a[i] != b[i]) return false;
-	}
-	return true;
-}
+struct Input{
+	int x, y, a;
+};
 
 int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n; cin >> n;
-	vi p(n), q(n);
-	rep(i, n) cin >> p[i];
-	rep(i, n) cin >> q[i];
+	int w, h, n;
+	cin >> w >> h >> n;
+	vector<Input> in(n);
+	rep(i, n)
+		cin >> in[i].x >> in[i].y >> in[i].a;
 
-	vi perm;
-	for(int i = 1; i <= n; i++){
-		perm.push_back(i);
+	int up = h;
+	int down = 0;
+	int right = w;
+	int left = 0;
+	rep(i, n){
+		if(in[i].a == 1){
+			left = max(left, in[i].x);
+		}
+		else if(in[i].a == 2){
+			right = min(right, in[i].x);
+		}
+		else if(in[i].a == 3){
+			down = max(down, in[i].y);
+		}else if(in[i].a == 4){
+			up = min(up, in[i].y);
+		}
 	}
-	int a;
-	for(a = 0; a < fact(n); a++){
-		if(equal(p, perm)) break;
-		next_permutation(all(perm));
-	}
-	sort(all(perm));
-	int b;
-	for(b = 0; b < fact(n); b++){
-		if(equal(q, perm)) break;
-		next_permutation(all(perm));
-	}
+	int y = up - down;
+	int x = right - left;
+	bool flg = true;
+	if(y < 0 || x < 0) flg = false;
+	int s = x * y;
 
-	cout << abs(a - b) << endl;
+	cout << (flg ? s : 0) << endl;
 	return 0;
 }

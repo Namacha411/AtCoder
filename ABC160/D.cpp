@@ -19,42 +19,33 @@ const ld PI = acosl(-1);
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
-int fact(int n){
-	if(n == 0) return 1;
-	return n * fact(n - 1);
-}
-
-bool equal(const vi &a, const vi &b){
-	rep(i, a.size()){
-		if(a[i] != b[i]) return false;
-	}
-	return true;
-}
-
 int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n; cin >> n;
-	vi p(n), q(n);
-	rep(i, n) cin >> p[i];
-	rep(i, n) cin >> q[i];
+	int n, x, y;
+	cin >> n >> x >> y;
+	x--;
+	y--;
 
-	vi perm;
-	for(int i = 1; i <= n; i++){
-		perm.push_back(i);
+	bool G[n][n];
+	rep(i, n) rep(j, n) G[i][j] = false;
+	rep(i, n - 1){
+		G[i][i + 1] = true;
+		G[i + 1][i] = true;
 	}
-	int a;
-	for(a = 0; a < fact(n); a++){
-		if(equal(p, perm)) break;
-		next_permutation(all(perm));
+	G[x][y] = true;
+	G[y][x] = true;
+	{
+		rep(i, n){
+			rep(j, n){
+				cerr << (G[i][j] ? 1 : 0);
+			}
+			cerr << endl;
+		}
 	}
-	sort(all(perm));
-	int b;
-	for(b = 0; b < fact(n); b++){
-		if(equal(q, perm)) break;
-		next_permutation(all(perm));
+	rep(k, n-1){
+		int ans = n - k;
+		cout << ans << endl;
 	}
-
-	cout << abs(a - b) << endl;
 	return 0;
 }
