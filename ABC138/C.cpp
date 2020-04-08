@@ -16,17 +16,25 @@ const ld PI = acos(-1);
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-
-#define DEBUG
-
 int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
-	//cout << fixed << setprecision(6);
+	cout << fixed << setprecision(6);
 	int n; cin >> n;
-	vi v(n);
+	vector<ld> v(n);
 	rep(i, n) cin >> v[i];
+
+	sort(all(v));
+	list<ld> li;
+	rep(i, n) li.push_back(v[i]);
+	rep(i, n-1){
+		ld t1 = li.front();
+		li.pop_front();
+		ld t2 = li.front();
+		li.pop_front();
+		li.push_back((t1 + t2) / 2);
+	}
+
+	cout << li.front() << endl;
 	return 0;
 }
