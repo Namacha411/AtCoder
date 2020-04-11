@@ -58,6 +58,7 @@ int main()
 			|| G[i].size() == 2)
 			ans++;
 	}
+
 	cout << ans << endl;
 	return 0;
 }

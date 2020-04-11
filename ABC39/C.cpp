@@ -11,28 +11,21 @@ const int INF = 1e9;
 const ll INFLL = 1e18;
 const int MOD = 1e9 + 7;
 const int NIL = -1;
-const ld PI = acos(-1);
+const ld PI = acosl(-1);
 
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-
-int main()
-{
+int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n; cin >> n;
-	pair<pair<string, int>, int> p[n];
-	rep(i, n){
-		string s; int t;
-		cin >> s >> t;
-		p[i] = make_pair(make_pair(s, -t), i);
-	}
+	string s;
+	cin >> s;
 
-	sort(p, p+n);
+	const string tbl[] = {"Do", "Re", "Mi", "Fa", "So", "La", "Si"};
+	const string onkai = "WBWBWW";
+	auto pos = (s.length() - s.find(onkai) + 1) % 7;
 
-	rep(i, n) cout << p[i].second+1 << endl;
+	cout << tbl[pos] << endl;
 	return 0;
 }

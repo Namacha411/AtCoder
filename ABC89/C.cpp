@@ -11,28 +11,34 @@ const int INF = 1e9;
 const ll INFLL = 1e18;
 const int MOD = 1e9 + 7;
 const int NIL = -1;
-const ld PI = acos(-1);
+const ld PI = acosl(-1);
 
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-
-int main()
-{
+int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n; cin >> n;
-	pair<pair<string, int>, int> p[n];
+	int n;
+	cin >> n;
+	map<char, int> m;
 	rep(i, n){
-		string s; int t;
-		cin >> s >> t;
-		p[i] = make_pair(make_pair(s, -t), i);
+		string s;
+		cin >> s;
+		if(s[0] == 'M'
+		|| s[0] == 'A'
+		|| s[0] == 'R'
+		|| s[0] == 'C'
+		|| s[0] == 'H')
+		m[s[0]]++;
 	}
 
-	sort(p, p+n);
+	ll ans = 1;
+	for(auto t : m){
+		ans *= t.second;
+	}
+	if(m.empty()) ans = 0;
 
-	rep(i, n) cout << p[i].second+1 << endl;
+	cout << ans << endl;
 	return 0;
 }

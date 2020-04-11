@@ -24,30 +24,24 @@ int main()
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
 	int n; cin >> n;
-	vector<string> w(n);
-	rep(i, n) cin >> w[i];
+	set<string> ss;
 
-	map<string, int> s;
-	rep(i, n)
-	{
-		s[w[i]]++;
-	}
-	rep(i, n)
-	{
-		if(s[w[i]] > 1)
-		{
-			cout << "No" << endl;
-			return 0;
+	bool ans = true;
+	string s1;
+	cin >> s1;
+	rep(i, n-1){
+		string s2;
+		cin >> s2;
+		if(s1.back() != s2.front()){
+			ans = false; break;
 		}
-	}
-	rep(i, n-1)
-	{
-		if(w[i][w[i].size()] == w[i+1][0])
-		{
-			cout << "No" << endl;
-			return 0;
+		if(ss.find(s1) != ss.end()){
+			ans = false; break;
 		}
+		ss.insert(s1);
+		s1 = s2;
 	}
-	cout << "Yes" << endl;
+
+	cout << (ans ? "Yes" : "No") << endl;
 	return 0;
 }

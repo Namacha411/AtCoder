@@ -24,5 +24,21 @@ int main() {
 	//cout << fixed << setprecision(6);
 	string s;
 	cin >> s;
+
+	vector<string> vs;
+	int i = 1;
+	while(!s.empty()){
+		if(s[i] != s[i-1]){
+			vs.push_back(s.substr(0, i));
+			s.erase(0, i);
+			i = 0;
+		}
+		i++;
+	}
+
+	for_each(all(vs), [](string t){
+		cout << t[0] << t.length();
+	});
+	cout << endl;
 	return 0;
 }
