@@ -11,33 +11,22 @@ const int INF = 1e9;
 const ll INFLL = 1e18;
 const int MOD = 1e9 + 7;
 const int NIL = -1;
-const ld PI = acos(-1);
+const ld PI = acosl(-1);
 
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-
-#define DEBUG
-
-int main()
-{
+int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n; cin >> n;
-	vi h(n);
-	rep(i, n) cin >> h[i];
-	h.push_back(INF);
+	string s, t;
+	cin >> s >> t;
 
-	for(int i = 1; i <= n; i++){
-		if(h[i-1] > h[i]){
-			h[i-1]--;
-		}
-	}
-	bool ans = true;
-	for(int i = 1; i <= n; i++){
-		if(h[i-1] > h[i]) ans = false;
+	bool ans = false;
+	rep(i, s.length()){
+		cerr << s << endl;
+		if(s == t) ans = true;
+		s = s.substr(1, s.length()-1) + s[0];
 	}
 
 	cout << (ans ? "Yes" : "No") << endl;

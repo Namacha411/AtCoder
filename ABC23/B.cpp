@@ -16,26 +16,37 @@ const ld PI = acosl(-1);
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-
 int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	string s;
-	cin >> s;
 	int n;
-	cin >> n;
+	string s;
+	cin >> n >> s;
 
-	if(s.length() < n){
-		cout<<0<<endl;
-		return 0;
+	list<char> acce;
+	acce.push_back('b');
+	int step = 0;
+	for(int i = 1; acce.size() < n; i++){
+		if(i % 3 == 1){
+			acce.push_front('a');
+			acce.push_back('c');
+		}
+		if(i % 3 == 2){
+			acce.push_front('c');
+			acce.push_back('a');
+		}
+		if(i % 3 == 0){
+			acce.push_front('b');
+			acce.push_back('b');
+		}
+		step++;
 	}
-	set<string> st;
-	rep(i, s.length()-n+1){
-		st.insert(s.substr(i,n));
+	string a = "";
+	while(!acce.empty()){
+		a.push_back(acce.front());
+		acce.pop_front();
 	}
 
-	cout << st.size() << endl;
+	cout << (a == s ? step : NIL) << endl;
 	return 0;
 }

@@ -16,26 +16,20 @@ const ld PI = acosl(-1);
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-
 int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	string s;
-	cin >> s;
-	int n;
-	cin >> n;
+	int n, t;
+	cin >> n >> t;
+	vi a(n);
+	rep(i, n) cin >> a[i];
 
-	if(s.length() < n){
-		cout<<0<<endl;
-		return 0;
+	ll ans = 0;
+	rep(i, n-1){
+		ans += min(a[i+1]-a[i], t);
 	}
-	set<string> st;
-	rep(i, s.length()-n+1){
-		st.insert(s.substr(i,n));
-	}
+	ans += t;
 
-	cout << st.size() << endl;
+	cout << ans << endl;
 	return 0;
 }

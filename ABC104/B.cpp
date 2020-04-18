@@ -16,26 +16,31 @@ const ld PI = acosl(-1);
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-
 int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
 	string s;
 	cin >> s;
-	int n;
-	cin >> n;
 
-	if(s.length() < n){
-		cout<<0<<endl;
-		return 0;
+	bool ans = true;
+	if(s[0] != 'A') ans = false;
+	bool appire = false;
+	for(int i = 2; i < s.length()-2; i++){
+		if(s[i] == 'C') appire = true;
 	}
-	set<string> st;
-	rep(i, s.length()-n+1){
-		st.insert(s.substr(i,n));
+	if(!appire) ans = false;
+	rep(i, s.length()-2){
+		if(i == 0) continue;
+		if(i == s.find("C")) continue;
+		if(s[i] < 'a' || s[i] > 'z')
+			ans = false;
 	}
+	int c = 0;
+	rep(i, s.length()){
+		if(s[i] == 'C') c++;
+	}
+	if(c > 1) ans = false;
 
-	cout << st.size() << endl;
+	cout << (ans ? "AC" : "WA") << endl;
 	return 0;
 }

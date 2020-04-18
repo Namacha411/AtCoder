@@ -5,6 +5,7 @@ using ll = long long;
 using ld = long double;
 using vi = vector<int>;
 using vll = vector<ll>;
+using vld = vector<ld>;
 using P = pair<int, int>;
 
 const int INF = 1e9;
@@ -16,26 +17,30 @@ const ld PI = acosl(-1);
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
+struct pos{
+	ld x, y;
+};
 
 int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	string s;
-	cin >> s;
-	int n;
+	pos b, a;
+	cin >> b.x >> b.y >> a.x >> a.y;
+	ld t, v;
+	cin >> t >> v;
+	ld n;
 	cin >> n;
+	vld x(n), y(n);
+	rep(i, n) cin >> x[i] >> y[i];
 
-	if(s.length() < n){
-		cout<<0<<endl;
-		return 0;
-	}
-	set<string> st;
-	rep(i, s.length()-n+1){
-		st.insert(s.substr(i,n));
+	bool ans = false;
+	rep(i, n){
+		ld dis = 0;
+		dis += sqrt(pow(b.x - x[i], 2) + pow(b.y - y[i], 2));
+		dis += sqrt(pow(a.x - x[i], 2) + pow(a.y - y[i], 2));
+		if(t * v >= dis) ans = true;
 	}
 
-	cout << st.size() << endl;
+	cout << (ans ? "YES" : "NO") << endl;
 	return 0;
 }

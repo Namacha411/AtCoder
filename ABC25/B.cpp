@@ -16,22 +16,32 @@ const ld PI = acosl(-1);
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-
 int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n, k;
-	cin >> n >> k;
-	vi x(n);
-	rep(i, n) cin >> x[i];
+	int n, a, b;
+	cin >> n >> a >> b;
+	vector<pair<string, int>> v(n);
+	rep(i, n)
+		cin >> v[i].first >> v[i].second;
 
-	ll ans = 0;
+	int ans = 0;
 	rep(i, n){
-		ans += min(x[i], k-x[i]) * 2;
+		if(v[i].first == "East"){
+			cerr << max(a, min(v[i].second, b)) << endl;
+			ans += max(a, min(v[i].second, b));
+		}
+		else{
+			cerr << max(a, min(v[i].second, b)) << endl;
+			ans -= max(a, min(v[i].second, b));
+		}
 	}
 
-	cout << ans << endl;
+	if(ans == 0)
+		cout << ans << endl;
+	else if(ans < 0)
+		printf("%s %d\n", "West", -ans);
+	else
+		printf("%s %d\n", "East", ans);
 	return 0;
 }

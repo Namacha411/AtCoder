@@ -25,33 +25,18 @@ int main()
 	ios::sync_with_stdio(false); cin.tie(0);
 	int n,k;
 	cin >> n >> k;
-	vector<int> p(n);
+	vector<ld> p(n);
 	rep(i, n) cin >> p[i];
 
-	vector<int> sum(n, 0);
-	rep(i, n)
-	{
-		if(i == 0) sum[i] = p[i];
-		else sum[i] = sum[i-1] + p[i];
+	vector<ld> sum(n + 1, 0);
+	for(int i = 1; i <= n; i++)
+		sum[i] = sum[i-1] + (p[i-1]+1)/2;
+	ld m = 0;
+	for(int i = 0; i <= n-k; i++){
+		m = max(m, sum[i+k]-sum[i]);
 	}
 
-	int max = 0;
-	int ite;
-	rep(i, n - k)
-	{
-		if(chmax(max, sum[i+k] - sum[i]))
-			ite = i;
-	}
-
-	double ans = 0;
-	int f = (ite == 0) ? 0 : 1;
-	cout << f << endl;
-	rep(i, k)
-	{
-		ans += (double)(p[i + ite + f] + 1) / 2;
-	}
-
-	cout << fixed << setprecision(6);
-	cout << ans << endl;
+	cout << fixed << setprecision(10);
+	cout << m << endl;
 	return 0;
 }

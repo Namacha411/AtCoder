@@ -16,26 +16,33 @@ const ld PI = acosl(-1);
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
+int fact(int n){
+	if(n == 0) return 1;
+	return n * fact(n-1);
+}
 
 int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
-	//cout << fixed << setprecision(6);
-	string s;
-	cin >> s;
+	cout << fixed << setprecision(10);
 	int n;
 	cin >> n;
+	vector<ld> x(n), y(n);
+	rep(i, n) cin >> x[i] >> y[i];
 
-	if(s.length() < n){
-		cout<<0<<endl;
-		return 0;
+	vi p(n);
+	rep(i, n) p[i] = i;
+	vector<ld> dist(fact(n), 0);
+	rep(i, fact(n)){
+		rep(j, n - 1){
+			dist[i] += sqrt(pow(x[p[j]]-x[p[j+1]], 2) + pow(y[p[j]]-y[p[j+1]], 2));
+		}
+		next_permutation(all(p));
 	}
-	set<string> st;
-	rep(i, s.length()-n+1){
-		st.insert(s.substr(i,n));
+	ld ans = 0;
+	rep(i, fact(n)){
+		ans += dist[i];
 	}
 
-	cout << st.size() << endl;
+	cout << ans / fact(n) << endl;
 	return 0;
 }

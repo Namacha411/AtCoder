@@ -16,33 +16,24 @@ const ld PI = acosl(-1);
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-
 int ans = 0;
-void dfs(vi &h, int first, int last)
-{
-	for(int i = first; i < last; i++)
-	{
-		if(h[i] == 0)
-		{
-			ans++;
-			dfs(h, first, i);
-			dfs(h, i, last);
-		}
-		else h[i]--;
+void dfs(vi &h, vi &v){
+	rep(i, h.size()){
+		
 	}
+	ans++;
 }
 
-int main()
-{
+int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n; cin >> n;
+	int n;
+	cin >> n;
 	vi h(n);
 	rep(i, n) cin >> h[i];
 
-	dfs(h, 0, h.size());
+	vi v(n, 0);
+	dfs(h, v);
 
 	cout << ans << endl;
 	return 0;
