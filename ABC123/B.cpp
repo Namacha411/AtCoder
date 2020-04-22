@@ -20,20 +20,24 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 #define DEBUG
 
-int main()
-{
+int main(){
 	ios::sync_with_stdio(false); cin.tie(0);
-	vector<int> a(5);
-	rep(i, 5) cin >> a[i];
+	vector<P> a(5, make_pair(0,0));
+	rep(i, 5) cin >> a[i].first;
 
-	sort(all(a));
-	rep(i, 4)
-	{
-		a[i] = (a[i] + 9) / 10;
-		a[i] *= 10;
+	rep(i, 5){
+		a[i].second = a[i].first%10 == 0 ? 10 : a[i].first % 10;
+		//a[i].second = a[i].first % 10;
+	}
+	sort(all(a), [](P &a, P &b){return a.second > b.second; });
+	rep(i, 4){
+		a[i].first = ((a[i].first+9) / 10) * 10;
 	}
 	int ans = 0;
-	rep(i, 5) ans += a[i];
+	rep(i, 5){
+		cerr << a[i].second << endl;
+		ans += a[i].first;
+	}
 
 	cout << ans << endl;
 	return 0;

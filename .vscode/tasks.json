@@ -6,7 +6,7 @@
 			"command": "/usr/local/Cellar/gcc/9.2.0_3/bin/g++-9",
 			"args": [
 				"-g",
-				"-std=gnu++2a",
+				"-std=gnu++17",
 				"-o",
 				"-O2",
 				"${file}",
