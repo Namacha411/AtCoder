@@ -1,3 +1,5 @@
 AtCoder/**/*.out
+AtCoder/**/*.exe
+.json
 .idea
 .vscode
