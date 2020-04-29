@@ -19,17 +19,20 @@ const ld PI = acosl(-1);
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
+struct Pos{
+	int x, y;
+};
+
 int main()
 {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	vector<P> pos(2);
-	rep(i, 2)
-		cin >> pos[i].first >> pos[i].second;
+	vector<Pos> p(2);
+	rep(i, 2) cin >> p[i].x >> p[i].y;
 
-	int x = pos[0].first - pos[1].first;
-	int y = pos[0].second - pos[1].second;
+	int x = p[1].x - p[0].x;
+	int y = p[1].y - p[0].y;
 
-	printf("%d %d %d %d", )
+	printf("%d %d %d %d\n", p[1].x-y, p[1].y+x, p[0].x-y, p[0].y+x);
 	return 0;
 }

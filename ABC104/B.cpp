@@ -24,23 +24,14 @@ int main() {
 
 	bool ans = true;
 	if(s[0] != 'A') ans = false;
-	bool appire = false;
-	for(int i = 2; i < s.length()-2; i++){
-		if(s[i] == 'C') appire = true;
-	}
-	if(!appire) ans = false;
-	rep(i, s.length()-2){
-		if(i == 0) continue;
-		if(i == s.find("C")) continue;
-		if(s[i] < 'a' || s[i] > 'z')
-			ans = false;
-	}
-	int c = 0;
+	if(s.substr(2,s.length()-3).find('C')==string::npos)
+		ans = false;
+	int cnt = 0;
 	rep(i, s.length()){
-		if(s[i] == 'C') c++;
+		if(s[i] >= 'a' && s[i] <= 'z') cnt++;
 	}
-	if(c > 1) ans = false;
-
+	if(s.length()-2 != cnt) ans = false;
+	
 	cout << (ans ? "AC" : "WA") << endl;
 	return 0;
 }

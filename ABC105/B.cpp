@@ -24,9 +24,16 @@ int main()
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
 	int n; cin >> n;
-	bool ans = false;
-	if(n % 7 == 0 || n % 4 == 0 || (n % 7) % 4 == 0)
-		ans = true;
-	cout << (ans ? "Yes" : "No") << endl;
+	
+	for(int i = 0; i <= 100/4; i++){
+		for(int j = 0; j <= 100/7; j++){
+			int $ = 4*i + 7*j;
+			if($ == n){
+				cout << "Yes" << endl;
+				return 0;
+			}
+		}
+	}
+	cout << "No" << endl;
 	return 0;
 }
