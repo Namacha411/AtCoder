@@ -24,17 +24,16 @@ int main()
 	vector<ld> v(n);
 	rep(i, n) cin >> v[i];
 
-	sort(all(v));
-	list<ld> li;
-	rep(i, n) li.push_back(v[i]);
-	rep(i, n-1){
-		ld t1 = li.front();
-		li.pop_front();
-		ld t2 = li.front();
-		li.pop_front();
-		li.push_back((t1 + t2) / 2);
+	priority_queue<ld, vector<ld>, greater<ld>> pq;
+	rep(i, n) pq.push(v[i]);
+	while(pq.size() != 1){
+		ld t1 = pq.top();
+		pq.pop();
+		ld t2 = pq.top();
+		pq.pop();
+		pq.push((t1 + t2) / 2);
 	}
 
-	cout << li.front() << endl;
+	cout << pq.top() << endl;
 	return 0;
 }

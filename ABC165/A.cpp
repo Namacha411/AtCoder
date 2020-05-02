@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define _GLIBCXX_DEBUG
 
 using ll = long long;
 using ld = long double;
@@ -16,26 +17,21 @@ const ld PI = acosl(-1);
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-
 int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n; cin >> n;
-	vector<pair<int, string>> sp(n);
-	rep(i, n)
-		cin >> sp[i].second >> sp[i].first;
+	int k; cin >> k;
+	int a, b;
+	cin >> a >> b;
 
-	sort(sp.rbegin(), sp.rend());
-	int sum = 0;
-	for(int i = 1; i < n; i++)
-		sum += sp[i].first;
-
-	if(sum >= sp[0].first){
-		cout << "atcoder\n";
-	} else {
-		cout << sp[0].second << '\n';
+	ll ans = 0;
+	rep(i, 1000){
+		ans += k;
+		if(ans >= a && ans <= b){
+			cout << "OK\n";
+			return 0;
+		}
 	}
+	cout << "NG\n";
 	return 0;
 }

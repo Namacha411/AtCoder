@@ -21,33 +21,19 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 #define DEBUG
 
-int main()
-{
+struct ps {
+	int p;
+	string s;
+};
+
+int main(){
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
 	int n, m;
 	cin >> n >> m;
-	vector<pair<int, string>> submit(m);
+	vector<ps> ps(n);
 	rep(i, m)
-		cin >> submit[i].first >> submit[i].second;
+		cin >> ps[i].p >> ps[i].s;
 
-	vector<pair<int, bool>> pena(n, make_pair(0, true));
-	int ac = 0;
-	rep(i, m)
-	{
-		if(submit[i].second == "WA")
-			if(pena[submit[i].first - 1].second)
-				pena[submit[i].first - 1].first ++;
-		else
-		{
-			pena[submit[i].first - 1].second = false;
-			ac++;
-		}
-	}
-
-	int ans = 0;
-	rep(i, n) ans += pena[i].first;
-
-	cout << ans << ' ' << ac << endl;
 	return 0;
 }

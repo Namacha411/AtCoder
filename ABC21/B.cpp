@@ -16,26 +16,24 @@ const ld PI = acosl(-1);
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-
 int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
 	int n; cin >> n;
-	vector<pair<int, string>> sp(n);
-	rep(i, n)
-		cin >> sp[i].second >> sp[i].first;
+	int a, b;
+	cin >> a >> b;
+	int k; cin >> k;
+	vi p(k);
+	rep(i, k) cin >> p[i];
 
-	sort(sp.rbegin(), sp.rend());
-	int sum = 0;
-	for(int i = 1; i < n; i++)
-		sum += sp[i].first;
-
-	if(sum >= sp[0].first){
-		cout << "atcoder\n";
-	} else {
-		cout << sp[0].second << '\n';
+	map<int, int> m;
+	m[a]++; m[b]++;
+	rep(i, k) m[p[i]]++;
+	bool ans = true;
+	for(P t : m){
+		if(t.second != 1) ans = false;
 	}
+
+	cout << (ans ? "YES" : "NO") << endl;
 	return 0;
 }

@@ -27,15 +27,20 @@ int main()
 	//cout << fixed << setprecision(6);
 	int n;
 	cin >> n;
-	vi a(n);
-	rep(i, n) cin >> a[i];
+	vi p(n);
+	rep(i, n) cin >> p[i];
 
-	rep(i, n-1)
-	{
-		for(int j = i; j < n; j++)
-		{
-			
+	int ans = 0;
+	rep(i, n){
+		for(int j = 0; j <= i; j++){
+			if(p[i] <= p[j]){
+				fprintf(stderr, "i=%d j=%d\n", i, j);
+				ans++;
+				break;
+			}
 		}
 	}
+
+	cout << ans << endl;
 	return 0;
 }
