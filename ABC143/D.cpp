@@ -30,7 +30,16 @@ int main()
 	vi l(n);
 	rep(i, n) cin >> l[i];
 
+	int ans = 0;
 	sort(all(l));
-	auto res = binary_search(all(l), 5);
+	reverse(all(l));
+	int l1 = l[0];
+	int l2 = l[1];
+	for(int i = 2; i < l.size(); i++){
+		if(l1 < (l2 + l[i])) ans++;
+		fprintf(stderr,"\t%d %d %d\n", l1, l2, l[i]);
+	}
+
+	cout << ans << endl;
 	return 0;
 }

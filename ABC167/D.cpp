@@ -16,15 +16,31 @@ const ld PI = acosl(-1);
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-
 int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n; cin >> n;
+	ll n, k;
+	cin >> n >> k;
+	vi a(n);
+	rep(i, n) cin >> a[i];
 
-	for(ll i = 1; i < n; i++){
+	vi s;
+	vi visit(n+1, -1);
+	int v = 1;
+	int cycle = 1;
+	while(visit[v] != -1){
+		visit[v] = s.size();
+		s.push_back(v);
+		v = a[v-1];
+	}
+	cycle = s.size() - visit[v];
+	int l = visit[v];
+
+	if(k < l) cout << s[k] << endl;
+	else{
+		k -= l;
+		k %= cycle;
+		cout << s[l+k] << endl;
 	}
 	return 0;
 }

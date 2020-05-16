@@ -16,15 +16,28 @@ const ld PI = acosl(-1);
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
+bool isPrime(int n){
+	for(int i = 2; i*i <= n; ++i){
+		if(n % i == 0) return false;
+	}
+	return true;
+}
 
 int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
 	int n; cin >> n;
 
-	for(ll i = 1; i < n; i++){
+	vi primeTbl;
+	for(int i = 2; i <= 55555; i++){
+		if(primeTbl.size() == n) break;
+		if(isPrime(i) && i % 5 == 1) primeTbl.push_back(i);
 	}
+
+	rep(i, n){
+		cout << primeTbl[i];
+		if(i != n-1) cout << " ";
+	}
+	cout << endl;
 	return 0;
 }

@@ -16,15 +16,18 @@ const ld PI = acosl(-1);
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-
 int main() {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	//cout << fixed << setprecision(6);
-	int n; cin >> n;
+	ll a, b, n;
+	cin >> a >> b >> n;
 
-	for(ll i = 1; i < n; i++){
+	vll tbl;
+	rep(i, n+1){
+		tbl.push_back(a*i/b - a*(i/b));
 	}
+	sort(all(tbl));
+
+	cout << tbl[n] << endl;
 	return 0;
 }

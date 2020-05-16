@@ -21,23 +21,24 @@ int main() {
 	//cout << fixed << setprecision(6);
 	int n;
 	cin >> n;
-	map<char, int> m;
+	map<char, ll> m;
 	rep(i, n){
 		string s;
 		cin >> s;
-		if(s[0] == 'M'
-		|| s[0] == 'A'
-		|| s[0] == 'R'
-		|| s[0] == 'C'
-		|| s[0] == 'H')
 		m[s[0]]++;
 	}
 
-	ll ans = 1;
-	for(auto t : m){
-		ans *= t.second;
-	}
-	if(m.empty()) ans = 0;
+	ll ans = 0;
+	ans += m['M'] * m['A'] * m['R'];
+	ans += m['M'] * m['A'] * m['C'];
+	ans += m['M'] * m['A'] * m['H'];
+	ans += m['M'] * m['R'] * m['C'];
+	ans += m['M'] * m['R'] * m['H'];
+	ans += m['M'] * m['C'] * m['H'];
+	ans += m['A'] * m['R'] * m['C'];
+	ans += m['A'] * m['R'] * m['H'];
+	ans += m['A'] * m['C'] * m['H'];
+	ans += m['R'] * m['C'] * m['H'];
 
 	cout << ans << endl;
 	return 0;
