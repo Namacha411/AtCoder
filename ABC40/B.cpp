@@ -24,7 +24,12 @@ int main() {
 	//cout << fixed << setprecision(6);
 	int n; cin >> n;
 
-	for(ll i = 1; i < n; i++){
+	int ans = INF;
+	for(int i = 1; i <= n; i++){
+		int res = abs(n/i - i) + n%((n/i)*i);
+		ans = min(ans, res);
 	}
+
+	cout << ans << endl;
 	return 0;
 }

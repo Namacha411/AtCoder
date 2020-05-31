@@ -21,19 +21,14 @@ typedef vector<ll> vll;
 
 #define DEBUG
 
-int main()
-{
+int main(){
+	int n, k; cin >> n >> k;
+	int R,S,P; cin >> R >> S >> P;
+	string t; cin >> t;
 
-	int n, k;
-	int R,S,P;
-	string t;
-	cin >> n >> k;
-	cin >> R >> S >> P;
-	cin >> t;
-
-	int ans;
-	rep(i,t.size())
-	{
+	ll ans = 0;
+	rep(i, n){
+		if(i > k) if(t[i] == t[i-k]) continue;
 		if(t[i] == 'r') ans += P;
 		if(t[i] == 's') ans += R;
 		if(t[i] == 'p') ans += S;

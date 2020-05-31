@@ -17,22 +17,22 @@ const ld PI = acosl(-1);
 #define all(n) n.begin(),n.end()
 
 int main(){
-    int l, r;
-    cin >> l >> r;
-
-    const int mod = 2019;
-    ll ans = mod;
-    for(ll i = l; i < r; i++){
-        for(ll j = i+1; j <= r; j++){
-            ll res = (i*j) % mod;
-            ans = min(ans, res);
-            if(res == 0){
-                cout << ans << endl;
-                return 0;
-            }
+    int n, m;
+    cin >> n >> m;
+    unordered_map<int, unordered_set<int>> teikibin;
+    rep(i, m) {
+        int a, b;
+        cin >> a >> b;
+        teikibin[a].insert(b);
+    }
+    
+    for(int i = 1; i < n; i++){
+        if(teikibin[1].find(i) != teikibin[i].end() && teikibin[i].find(n) != teikibin[i].end()){
+            cout << "POSSIBLE\n";
+            return 0;
         }
     }
 
-    cout << ans << endl;
+    cout << "IMPOSSIBLE\n";
     return 0;
 }

@@ -17,22 +17,6 @@ const ld PI = acosl(-1);
 #define all(n) n.begin(),n.end()
 
 int main(){
-    int l, r;
-    cin >> l >> r;
-
-    const int mod = 2019;
-    ll ans = mod;
-    for(ll i = l; i < r; i++){
-        for(ll j = i+1; j <= r; j++){
-            ll res = (i*j) % mod;
-            ans = min(ans, res);
-            if(res == 0){
-                cout << ans << endl;
-                return 0;
-            }
-        }
-    }
-
-    cout << ans << endl;
+    
     return 0;
 }

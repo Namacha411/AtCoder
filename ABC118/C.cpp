@@ -16,22 +16,19 @@ const ld PI = acosl(-1);
 #define rep(i,n) for(int i=0; i<(n); ++i)
 #define all(n) n.begin(),n.end()
 
-int main(){
-    int l, r;
-    cin >> l >> r;
+int gcd(int a, int b){
+    if(a < b) swap(a, b);
+    if(b == 0) return a;
+    return gcd(b, a%b);
+}
 
-    const int mod = 2019;
-    ll ans = mod;
-    for(ll i = l; i < r; i++){
-        for(ll j = i+1; j <= r; j++){
-            ll res = (i*j) % mod;
-            ans = min(ans, res);
-            if(res == 0){
-                cout << ans << endl;
-                return 0;
-            }
-        }
-    }
+int main(){
+    int n; cin >> n;
+    vi a(n);
+    rep(i, n) cin >> a[i];
+
+    int ans = a[0];
+    for(int t : a) ans = gcd(ans, t);
 
     cout << ans << endl;
     return 0;
