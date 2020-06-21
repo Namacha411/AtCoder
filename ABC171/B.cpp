@@ -16,23 +16,16 @@ const ld PI = acosl(-1);
 #define all(n) n.begin(),n.end()
 
 int main(){
-	ios::sync_with_stdio(false); cin.tie(nullptr);
-	//cout << fixed << setprecision(6);
-	ll n; cin >> n;
-	vll a(1, 0);
-	rep(i, n) {
-		ll t; cin >> t;
-		t += a.back();
-		a.push_back(t);
-	}
+    ios::sync_with_stdio(false); cin.tie(nullptr);
+    //cout << fixed << setprecision(6);
+    int n, k; cin >> n >> k;
+    vi p(n);
+    rep(i, n) cin >> p[i];
 
-	ll ans = INFLL;
-	for(int i = 1; i < a.size()-1; i++){
-		ll x = a[i];
-		ll y = a.back() - x;
-		ans = min(ans, abs(x-y));
-	}
+    sort(all(p));
+    int sum = 0;
+    rep(i, k) sum += p[i];
 
-	cout << ans << endl;
-	return 0;
+    cout << sum << endl;
+    return 0;
 }

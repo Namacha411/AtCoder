@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
+#include <boost/multiprecision/cpp_int.hpp>
 using namespace std;
+using namespace boost::multiprecision;
 
 using ll = long long;
 using ld = long double;
@@ -23,17 +25,17 @@ int main() {
 	vll a(n);
 	rep(i, n) cin >> a[i];
 
-	ll ans = 1;
-	for(int t : a){
-		if(ans > (ll)1e18){
-			cout << -1 << endl;
-			return 0;
+	cpp_int ans = 1;
+	sort(all(a));
+	if(a[0] == 0){ cout << 0 << endl; return 0; }
+	else {
+		for(cpp_int t : a){
+			ans *= t;
+			if(ans > INFLL){
+				cout << -1 << endl;
+				return 0;
+			}
 		}
-		ans *= t;
-	}
-	if(ans > (ll)1e18){
-		cout << -1 << endl;
-		return 0;
 	}
 
 	cout << ans << endl;
